@@ -8,11 +8,11 @@ class HTMLTag:
         self._attributes = attributes
 
     @property
-    def create_element(self) -> str:
-        attributes_str = " ".join(
-            [f'{key}="{value}"' for key, value in self._attributes.items()]
+    def create_tag(self) -> str:
+        attributes_str = "".join(
+            [f' {key}="{value}"' for key, value in self._attributes.items()]
         )
-        return f"<{self._tag} {attributes_str}>\n"
+        return f"<{self._tag}{attributes_str}>\n"
 
     @property
     def close_tag(self) -> str:
@@ -22,8 +22,8 @@ class HTMLTag:
         return f"</{self._tag}>\n"
 
     @property
-    def create_and_close_element(self):
-        return self.create_element + self.close_tag
+    def create_and_close_tag(self):
+        return self.create_tag + self.close_tag
 
 
 if __name__ == "__main__":
@@ -43,22 +43,22 @@ if __name__ == "__main__":
     label_tag = HTMLTag("label")
 
     string = (
-        div_tag.create_element
-        + form_tag.create_element
-        + label_tag.create_element
+        div_tag.create_tag
+        + form_tag.create_tag
+        + label_tag.create_tag
         + "Name: "
         + label_tag.close_tag
-        + username_input_tag.create_and_close_element
-        + br_element.create_element
-        + label_tag.create_element
+        + username_input_tag.create_and_close_tag
+        + br_element.create_tag
+        + label_tag.create_tag
         + "Gender: "
         + label_tag.close_tag
-        + gender_select_tag.create_and_close_element
-        + br_element.create_element
-        + a_tag.create_element
+        + gender_select_tag.create_and_close_tag
+        + br_element.create_tag
+        + a_tag.create_tag
         + "Link"
         + a_tag.close_tag
-        + img_tag.create_and_close_element
+        + img_tag.create_and_close_tag
         + form_tag.close_tag
         + div_tag.close_tag
     )
